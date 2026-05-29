@@ -95,6 +95,8 @@ h2 .count {
   z-index: 2;
   text-align: center;
   color: white;
+  width: 90%;
+  max-width: 800px;
 }
 
 .hero-content h1 {
@@ -508,7 +510,7 @@ section {
 
 /* === Responsive === */
 @media (max-width: 768px) {
-  .hero-content h1 { font-size: 2rem; white-space: nowrap; }
+  .hero-content h1 { font-size: 2.4rem; white-space: nowrap; }
   .hero-content p { font-size: 1rem; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .gif-grid { grid-template-columns: 1fr 1fr; }
@@ -526,5 +528,5 @@ section {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
   .gif-grid { grid-template-columns: 1fr; }
 
-  .hero-content h1 { font-size: 1.6rem; white-space: nowrap; }
+  .hero-content h1 { font-size: 1.9rem; white-space: nowrap; }
 }
