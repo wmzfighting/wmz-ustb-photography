@@ -189,8 +189,8 @@ h2 .count {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
 .gallery-item {
@@ -238,6 +238,13 @@ h2 .count {
   overflow: hidden;
   background: #f0f0f0;
   box-shadow: 0 1px 4px var(--color-card-shadow);
+}
+
+.gif-item.gif-large {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 640px;
+  width: 100%;
 }
 
 .gif-item video,
@@ -501,18 +508,14 @@ section {
 }
 
 /* === Responsive === */
-@media (max-width: 1024px) {
-  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-  .gif-grid { grid-template-columns: repeat(2, 1fr); }
-  .usage-card { grid-template-columns: 1fr; }
-}
-
 @media (max-width: 768px) {
   .hero-content h1 { font-size: 1.8rem; }
   .hero-content p { font-size: 0.95rem; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .gif-grid { grid-template-columns: 1fr 1fr; }
+  .gif-item.gif-large { max-width: 100%; }
   .download-card { grid-template-columns: 1fr; }
+  .usage-card { grid-template-columns: 1fr; }
   .about-card { padding: 24px; }
   .container { padding: 0 16px; }
   h2 { font-size: 1.3rem; }
@@ -523,5 +526,6 @@ section {
 @media (max-width: 480px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
   .gif-grid { grid-template-columns: 1fr; }
+  .gif-item.gif-large { max-width: 100%; }
   .hero-content h1 { font-size: 1.5rem; }
 }

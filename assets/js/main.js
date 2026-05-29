@@ -11,11 +11,13 @@ for (let i = 1; i <= 30; i++) {
   GALLERY_FILES.push(`gallery-${String(i).padStart(2, '0')}.jpg`);
 }
 
-// GIF files (11 files)
+// GIF files: 01-08, 10, 11 (skip 09)
 const GIF_BASES = [];
-for (let i = 1; i <= 11; i++) {
-  GIF_BASES.push(`gif-${String(i).padStart(2, '0')}`);
+for (let i = 1; i <= 8; i++) {
+  GIF_BASES.push({ base: `gif-${String(i).padStart(2, '0')}`, large: false });
 }
+GIF_BASES.push({ base: 'gif-10', large: false });
+GIF_BASES.push({ base: 'gif-11', large: true });
 
 // === Hero Carousel ===
 (function() {
@@ -48,12 +50,12 @@ for (let i = 1; i <= 11; i++) {
     goTo((current + 1) % HERO_FILES.length);
   }
 
-  interval = setInterval(next, 5000);
+  interval = setInterval(next, 4000);
 
   // Pause on hover
   const hero = document.getElementById('hero');
   hero.addEventListener('mouseenter', () => clearInterval(interval));
-  hero.addEventListener('mouseleave', () => { interval = setInterval(next, 5000); });
+  hero.addEventListener('mouseleave', () => { interval = setInterval(next, 4000); });
 })();
 
 // === Gallery Grid ===
@@ -71,9 +73,9 @@ for (let i = 1; i <= 11; i++) {
 // === GIF Grid ===
 (function() {
   const grid = document.getElementById('gifGrid');
-  GIF_BASES.forEach((base) => {
+  GIF_BASES.forEach(({ base, large }) => {
     const item = document.createElement('div');
-    item.className = 'gif-item';
+    item.className = 'gif-item' + (large ? ' gif-large' : '');
     item.innerHTML = `
       <video src="assets/images/gif/${base}.mp4" autoplay loop muted playsinline
              poster="assets/images/gif/${base}.jpg">
