@@ -11,13 +11,22 @@ for (let i = 1; i <= 30; i++) {
   GALLERY_FILES.push(`gallery-${String(i).padStart(2, '0')}.jpg`);
 }
 
-// GIF files: 01-08, 10, 11 (skip 09)
-const GIF_BASES = [];
-for (let i = 1; i <= 8; i++) {
-  GIF_BASES.push({ base: `gif-${String(i).padStart(2, '0')}`, large: false });
+// GIF files: small ones shuffled, large ones in a row at the end
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
 }
-GIF_BASES.push({ base: 'gif-10', large: false });
-GIF_BASES.push({ base: 'gif-11', large: true });
+
+const SMALL_GIFS = shuffle(['gif-02', 'gif-03', 'gif-05', 'gif-06', 'gif-07', 'gif-10']);
+const LARGE_GIFS = ['gif-11', 'gif-12', 'gif-13'];
+
+const GIF_ITEMS = [
+  ...SMALL_GIFS.map(base => ({ base, large: false })),
+  ...LARGE_GIFS.map(base => ({ base, large: true }))
+];
 
 // === Hero Carousel ===
 (function() {
@@ -73,7 +82,7 @@ GIF_BASES.push({ base: 'gif-11', large: true });
 // === GIF Grid ===
 (function() {
   const grid = document.getElementById('gifGrid');
-  GIF_BASES.forEach(({ base, large }) => {
+  GIF_ITEMS.forEach(({ base, large }) => {
     const item = document.createElement('div');
     item.className = 'gif-item' + (large ? ' gif-large' : '');
     item.innerHTML = `

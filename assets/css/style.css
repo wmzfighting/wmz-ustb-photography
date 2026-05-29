@@ -241,10 +241,7 @@ h2 .count {
 }
 
 .gif-item.gif-large {
-  grid-column: 1 / -1;
-  justify-self: center;
-  max-width: 640px;
-  width: 100%;
+  /* each large item occupies one column naturally, 3 per row */
 }
 
 .gif-item video,
@@ -513,7 +510,7 @@ section {
   .hero-content p { font-size: 0.95rem; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .gif-grid { grid-template-columns: 1fr 1fr; }
-  .gif-item.gif-large { max-width: 100%; }
+
   .download-card { grid-template-columns: 1fr; }
   .usage-card { grid-template-columns: 1fr; }
   .about-card { padding: 24px; }
@@ -526,6 +523,6 @@ section {
 @media (max-width: 480px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
   .gif-grid { grid-template-columns: 1fr; }
-  .gif-item.gif-large { max-width: 100%; }
+
   .hero-content h1 { font-size: 1.5rem; }
 }
