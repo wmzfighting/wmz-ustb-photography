@@ -20,14 +20,12 @@ function shuffle(arr) {
   return arr;
 }
 
-const SMALL_GIFS = shuffle(['gif-02', 'gif-03', 'gif-05', 'gif-06', 'gif-07', 'gif-10']);
-const LARGE_GIFS = ['gif-11', 'gif-12', 'gif-13'];
-const EXTRA_GIFS = ['gif-14', 'gif-15'];
+const SHUFFLED_GIFS = shuffle(['gif-02', 'gif-03', 'gif-05', 'gif-06', 'gif-07', 'gif-10']);
+const FIXED_GIFS = ['gif-16', 'gif-14', 'gif-15', 'gif-11', 'gif-12', 'gif-13'];
 
 const GIF_ITEMS = [
-  ...SMALL_GIFS.map(base => ({ base, large: false })),
-  ...LARGE_GIFS.map(base => ({ base, large: true })),
-  ...EXTRA_GIFS.map(base => ({ base, large: false }))
+  ...SHUFFLED_GIFS.map(base => ({ base })),
+  ...FIXED_GIFS.map(base => ({ base }))
 ];
 
 // === Hero Carousel ===
@@ -96,9 +94,9 @@ const GIF_ITEMS = [
     });
   }, { rootMargin: '200px' });
 
-  GIF_ITEMS.forEach(({ base, large }) => {
+  GIF_ITEMS.forEach(({ base }) => {
     const item = document.createElement('div');
-    item.className = 'gif-item' + (large ? ' gif-large' : '');
+    item.className = 'gif-item';
     item.innerHTML = `
       <video data-src="assets/images/gif/${base}.mp4" autoplay loop muted playsinline
              poster="assets/images/gif/${base}.jpg">
@@ -174,4 +172,18 @@ document.addEventListener('keydown', (e) => {
   }, { rootMargin: '-30% 0px -60% 0px' });
 
   sections.forEach(s => observer.observe(s));
+})();
+
+// === Sidebar Toggle (mobile) ===
+(function() {
+  const toggle = document.getElementById('sidebarToggle');
+  const sidebar = document.getElementById('sidebar');
+  toggle.addEventListener('click', () => {
+    sidebar.classList.toggle('visible');
+  });
+  sidebar.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      sidebar.classList.remove('visible');
+    });
+  });
 })();
