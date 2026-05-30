@@ -2,7 +2,7 @@
 
 魏梦泽 北科摄影素材分享合集。
 
-[🌐 访问网站](https://wmzfighting.github.io/ustb-photo)
+[🌐 访问网站 (Cloudflare)](https://wmz-ustb-photography.pages.dev)
 
 ## 关于
 
