@@ -227,3 +227,29 @@ document.getElementById('shareCopy').addEventListener('click', () => copyLink())
 document.getElementById('shareWechat').addEventListener('click', () => showQR('微信扫一扫访问网站'));
 document.getElementById('shareMoments').addEventListener('click', () => { copyLink('链接已复制，打开微信粘贴到朋友圈即可'); showQR('保存二维码发朋友圈'); });
 document.getElementById('shareRednote').addEventListener('click', () => copyLink('链接已复制，打开小红书粘贴即可分享'));
+
+// === Dark Mode Toggle ===
+(function() {
+  const toggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+
+  // Check saved preference or system preference
+  const saved = localStorage.getItem('theme');
+  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    html.setAttribute('data-theme', 'dark');
+    toggle.textContent = '☀️ 浅色模式';
+  }
+
+  toggle.addEventListener('click', () => {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      html.removeAttribute('data-theme');
+      toggle.textContent = '🌙 深色模式';
+      localStorage.setItem('theme', 'light');
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      toggle.textContent = '☀️ 浅色模式';
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+})();
