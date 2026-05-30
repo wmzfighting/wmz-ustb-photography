@@ -187,3 +187,43 @@ document.addEventListener('keydown', (e) => {
     });
   });
 })();
+
+// === Share ===
+const SHARE_URL = 'https://wmz-ustb-photography.pages.dev';
+const QR_API = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(SHARE_URL);
+
+function showQR(title) {
+  document.getElementById('qrTitle').textContent = title;
+  document.getElementById('qrImg').src = QR_API;
+  document.getElementById('qrModal').classList.add('active');
+}
+
+document.getElementById('qrClose').addEventListener('click', () => {
+  document.getElementById('qrModal').classList.remove('active');
+});
+document.getElementById('qrModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) document.getElementById('qrModal').classList.remove('active');
+});
+
+function copyLink(msg) {
+  navigator.clipboard.writeText(SHARE_URL).then(() => {
+    const tip = document.getElementById('shareTip');
+    tip.textContent = msg || '链接已复制，快去分享吧！';
+    setTimeout(() => { tip.textContent = ''; }, 2000);
+  }).catch(() => {
+    const input = document.createElement('input');
+    input.value = SHARE_URL;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    const tip = document.getElementById('shareTip');
+    tip.textContent = msg || '链接已复制，快去分享吧！';
+    setTimeout(() => { tip.textContent = ''; }, 2000);
+  });
+}
+
+document.getElementById('shareCopy').addEventListener('click', () => copyLink());
+document.getElementById('shareWechat').addEventListener('click', () => showQR('微信扫一扫访问网站'));
+document.getElementById('shareMoments').addEventListener('click', () => { copyLink('链接已复制，打开微信粘贴到朋友圈即可'); showQR('保存二维码发朋友圈'); });
+document.getElementById('shareRednote').addEventListener('click', () => copyLink('链接已复制，打开小红书粘贴即可分享'));

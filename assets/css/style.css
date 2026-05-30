@@ -482,6 +482,114 @@ h2 .count {
   color: var(--color-text-light);
 }
 
+/* === Share === */
+.share-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.share-section h2 {
+  justify-content: center;
+  border-bottom: none;
+  margin-bottom: 0.8rem;
+}
+
+.share-intro {
+  color: var(--color-text-secondary);
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.share-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: white;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.share-btn:hover {
+  background: var(--color-bg-alt);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.share-tip {
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  min-height: 1.2em;
+}
+
+/* QR Modal */
+.qr-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0,0,0,0.6);
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-modal.active {
+  display: flex;
+}
+
+.qr-modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 28px 32px 20px;
+  text-align: center;
+  position: relative;
+  max-width: 320px;
+  width: 90%;
+}
+
+.qr-close {
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #999;
+  line-height: 1;
+}
+
+.qr-title {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.qr-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+}
+
+.qr-hint {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  margin-top: 0.6rem;
+}
+
 /* === Comments === */
 .comments-section {
   padding: 60px 0;
