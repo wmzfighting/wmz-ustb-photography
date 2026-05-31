@@ -292,16 +292,22 @@ document.getElementById('shareRednote').addEventListener('click', () => copyLink
     currentSeason = null;
   }
 
+  function getSrc(idx) {
+    if (idx === 0) return `assets/images/seasons/${currentSeason}-cover.jpg`;
+    const num = String(currentOrder[idx - 1]).padStart(2, '0');
+    return `assets/images/seasons/${currentSeason}/${num}.jpg`;
+  }
+
   function updateImage() {
-    let src;
-    if (currentIndex === 0) {
-      src = `assets/images/seasons/${currentSeason}-cover.jpg`;
-    } else {
-      const num = String(currentOrder[currentIndex - 1]).padStart(2, '0');
-      src = `assets/images/seasons/${currentSeason}/${num}.jpg`;
-    }
-    img.src = src;
+    img.src = getSrc(currentIndex);
     info.textContent = `${SEASON_NAMES[currentSeason]} · ${currentIndex + 1} / ${TOTAL}`;
+    // Preload adjacent images
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'image';
+    preload.href = getSrc((currentIndex + 1) % TOTAL);
+    document.head.appendChild(preload);
+    setTimeout(() => document.head.removeChild(preload), 100);
   }
 
   document.querySelectorAll('.season-card').forEach(card => {
