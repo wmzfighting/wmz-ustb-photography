@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%231a5276'/><text x='16' y='22' text-anchor='middle' fill='white' font-size='18'>📷</text></svg>">
 </head>
 <body>
@@ -47,6 +47,7 @@
       <li><a href="#about" class="sidebar-link">关于合集</a></li>
       <li><a href="#gallery" class="sidebar-link">精选图片</a></li>
       <li><a href="#gifs" class="sidebar-link">动图 · 延时</a></li>
+      <li><a href="#seasons" class="sidebar-link">校园 · 四季</a></li>
       <li><a href="#download" class="sidebar-link">素材下载</a></li>
       <li><a href="#usage" class="sidebar-link">使用须知</a></li>
       <li><a href="#changelog" class="sidebar-link">更新日志</a></li>
@@ -85,6 +86,47 @@
       <div class="gif-grid" id="gifGrid"></div>
     </div>
   </section>
+
+  <!-- Seasons -->
+  <section class="seasons-section" id="seasons">
+    <div class="container">
+      <h2>校园 · 四季</h2>
+      <p class="seasons-intro">点击对应季节，查看北科校园的春夏秋冬。</p>
+      <div class="seasons-grid">
+        <div class="season-card" data-season="spring">
+          <img src="assets/images/seasons/spring-cover.jpg" alt="春" loading="lazy">
+          <div class="season-label">🌸 春</div>
+        </div>
+        <div class="season-card" data-season="summer">
+          <img src="assets/images/seasons/summer-cover.jpg" alt="夏" loading="lazy">
+          <div class="season-label">🌿 夏</div>
+        </div>
+        <div class="season-card" data-season="autumn">
+          <img src="assets/images/seasons/autumn-cover.jpg" alt="秋" loading="lazy">
+          <div class="season-label">🍂 秋</div>
+        </div>
+        <div class="season-card" data-season="winter">
+          <img src="assets/images/seasons/winter-cover.jpg" alt="冬" loading="lazy">
+          <div class="season-label">❄️ 冬</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Season Lightbox -->
+  <div class="season-lightbox" id="seasonLightbox">
+    <button class="season-lb-close" id="seasonLbClose" aria-label="返回">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="white" stroke-width="2"><path d="M8 8l16 16M8 24L24 8"/></svg>
+    </button>
+    <button class="season-lb-prev" id="seasonLbPrev" aria-label="上一张">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="2"><path d="M24 12l-8 8 8 8"/></svg>
+    </button>
+    <button class="season-lb-next" id="seasonLbNext" aria-label="下一张">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="white" stroke-width="2"><path d="M16 12l8 8-8 8"/></svg>
+    </button>
+    <div class="season-lb-info" id="seasonLbInfo"></div>
+    <img src="" alt="" class="season-lb-img" id="seasonLbImg">
+  </div>
 
   <!-- Download -->
   <section class="download-section" id="download">
@@ -131,6 +173,24 @@
         <p class="usage-full">
           <a href="https://github.com/wmzfighting/wmz-ustb-photography/blob/main/usage.md" target="_blank">查看完整声明与免责条款 →</a>
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate -->
+  <section class="donate-section" id="donate">
+    <div class="container">
+      <h2>赞赏</h2>
+      <p class="donate-intro">如果这些素材对你有帮助，欢迎请我喝杯奶茶。</p>
+      <div class="donate-codes">
+        <div class="donate-item">
+          <img src="assets/images/donate/wechat.png" alt="微信赞赏码" loading="lazy">
+          <span>微信</span>
+        </div>
+        <div class="donate-item">
+          <img src="assets/images/donate/alipay.jpeg" alt="支付宝收款码" loading="lazy">
+          <span>支付宝</span>
+        </div>
       </div>
     </div>
   </section>
@@ -185,24 +245,6 @@
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- Donate -->
-  <section class="donate-section" id="donate">
-    <div class="container">
-      <h2>赞赏</h2>
-      <p class="donate-intro">如果这些素材对你有帮助，欢迎请我喝杯奶茶。</p>
-      <div class="donate-codes">
-        <div class="donate-item">
-          <img src="assets/images/donate/wechat.png" alt="微信赞赏码" loading="lazy">
-          <span>微信</span>
-        </div>
-        <div class="donate-item">
-          <img src="assets/images/donate/alipay.jpeg" alt="支付宝收款码" loading="lazy">
-          <span>支付宝</span>
-        </div>
       </div>
     </div>
   </section>

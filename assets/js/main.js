@@ -253,3 +253,89 @@ document.getElementById('shareRednote').addEventListener('click', () => copyLink
     }
   });
 })();
+
+// === Seasons Lightbox ===
+(function() {
+  const SEASON_NAMES = { spring: '春', summer: '夏', autumn: '秋', winter: '冬' };
+  const GALLERY_COUNT = 15;
+
+  function makeShuffled(n) {
+    const arr = [];
+    for (let i = 1; i <= n; i++) arr.push(i);
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  let currentSeason = null;
+  let currentOrder = null; // shuffled indices for gallery images
+  let currentIndex = 0;   // 0 = cover image, 1..15 = gallery
+
+  const lb = document.getElementById('seasonLightbox');
+  const img = document.getElementById('seasonLbImg');
+  const info = document.getElementById('seasonLbInfo');
+
+  function open(season) {
+    currentSeason = season;
+    currentOrder = makeShuffled(GALLERY_COUNT);
+    currentIndex = 0;
+    updateImage();
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+    currentSeason = null;
+  }
+
+  function updateImage() {
+    let src;
+    if (currentIndex === 0) {
+      src = `assets/images/seasons/${currentSeason}-cover.jpg`;
+    } else {
+      const num = String(currentOrder[currentIndex - 1]).padStart(2, '0');
+      src = `assets/images/seasons/${currentSeason}/${num}.jpg`;
+    }
+    img.src = src;
+    info.textContent = `${SEASON_NAMES[currentSeason]} · ${currentIndex + 1} / ${TOTAL}`;
+  }
+
+  document.querySelectorAll('.season-card').forEach(card => {
+    card.addEventListener('click', () => open(card.dataset.season));
+  });
+
+  document.getElementById('seasonLbClose').addEventListener('click', close);
+  lb.addEventListener('click', (e) => { if (e.target === e.currentTarget) close(); });
+
+  const TOTAL = GALLERY_COUNT + 1; // cover + 15 gallery
+
+  document.getElementById('seasonLbPrev').addEventListener('click', () => {
+    if (!currentSeason) return;
+    currentIndex = (currentIndex - 1 + TOTAL) % TOTAL;
+    updateImage();
+  });
+
+  document.getElementById('seasonLbNext').addEventListener('click', () => {
+    if (!currentSeason) return;
+    currentIndex = (currentIndex + 1) % TOTAL;
+    updateImage();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') close();
+    if (!currentSeason) return;
+    if (e.key === 'ArrowLeft') {
+      currentIndex = (currentIndex - 1 + TOTAL) % TOTAL;
+      updateImage();
+    }
+    if (e.key === 'ArrowRight') {
+      currentIndex = (currentIndex + 1) % TOTAL;
+      updateImage();
+    }
+  });
+})();
