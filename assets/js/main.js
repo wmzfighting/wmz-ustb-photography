@@ -345,3 +345,45 @@ document.getElementById('shareRednote').addEventListener('click', () => copyLink
     }
   });
 })();
+
+// === Reusable Carousel ===
+function makeCarousel(prefix, count, folder) {
+  const order = [];
+  for (let i = 1; i <= count; i++) order.push(i);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+
+  let idx = 0;
+  const img = document.getElementById(prefix + 'Img');
+  const counter = document.getElementById(prefix + 'Counter');
+
+  function show() {
+    const num = String(order[idx]).padStart(2, '0');
+    img.src = `assets/images/${folder}/${num}.jpg`;
+    counter.textContent = `${idx + 1} / ${count}`;
+    const next = (idx + 1) % count;
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = `assets/images/${folder}/${String(order[next]).padStart(2, '0')}.jpg`;
+    document.head.appendChild(link);
+    setTimeout(() => document.head.removeChild(link), 100);
+  }
+
+  show();
+
+  document.getElementById(prefix + 'Prev').addEventListener('click', () => {
+    idx = (idx - 1 + count) % count;
+    show();
+  });
+  document.getElementById(prefix + 'Next').addEventListener('click', () => {
+    idx = (idx + 1) % count;
+    show();
+  });
+}
+
+makeCarousel('animal', 22, 'animals');
+makeCarousel('bird', 12, 'birds');
+makeCarousel('nightstar', 18, 'nightstars');
